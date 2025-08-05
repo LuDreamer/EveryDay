@@ -7,10 +7,21 @@
 </head>
 <body>
     <script>
-    //     let admin,name
-    //    name="John"//不可重复声明
-    //    admin=name
-    //    alert(admin)
+          let admin,name
+       name="John"//不可重复声明
+       var newname
+       var newname="wangjing"
+       
+       admin=name
+    if(!confirm(`你是${admin}吗`)){    let age=prompt('你是谁',admin)
+       alert(`你是${age}`)   
+}else{
+    alert('你是'+admin+`，你不是${newname}`)
+
+}
+const obj = { name: 'Alice' };
+obj.name = 'Bob'; // 允许（修改对象内部属性，地址未变）
+obj = { age: 20 }; // 报错（试图修改变量引用的地址）
     </script>
 </body>
 </html>

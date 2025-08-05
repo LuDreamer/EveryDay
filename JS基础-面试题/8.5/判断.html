@@ -1,0 +1,22 @@
+@ -0,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组判断，空对象</title>
+</head>
+<body>
+    <script>
+        let a={}
+    let b=[1,2,3]
+    //判断空对象
+    console.log(Object.keys(a).length===0);//// true（获取自有属性，长度为0）
+    console.log(JSON.stringify(a)==='{}'&&Object.getPrototypeOf(a) === Object.prototype);// // true（JSON序列化后对比）、注意是字符串
+    //判断数组
+        console.log(    Array.isArray(b)+'数组长度为'+b.length);
+        console.log(b instanceof Array);
+        console.log(Object.prototype.toString.call(b));
+    </script>
+</body>
+</html>
