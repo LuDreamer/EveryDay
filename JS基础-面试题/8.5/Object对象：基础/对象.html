@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <script>
+        let admin=new Object()
+        admin={
+
+        }
+        let user = {     // an object
+  name: "John",  // by key "name" store value "John"
+  age: 30        // by key "age" store value 30
+};
+alert( user.name ); // John
+user.isAdmin = true;
+alert( user.isAdmin); 
+delete user.age;
+
+// let key = "likes birds";
+// // same as user["likes birds"] = true;
+// user[key] = true;
+
+let key=prompt('你想知道什么','')
+alert(user[key])
+
+let fruit = prompt("Which fruit to buy?", "apple");
+
+let bag = {
+  [fruit]: 5, // the name of the property is taken from the variable fruit
+};
+
+alert( bag.apple ); // 5 if fruit="apple"
+
+let isEmpty=function(obj){
+   if(Object.keys(obj).length===0){
+    return true
+   }else{return false}
+}
+let schedule = {};
+
+alert( isEmpty(schedule) ); // true
+
+schedule["8:30"] = "get up";
+
+alert( isEmpty(schedule) ); // false
+
+
+    </script>
+    <a href="对象遍历方法.html">了解如何遍历对象并对其值操作</a>
+</body>
+</html>
