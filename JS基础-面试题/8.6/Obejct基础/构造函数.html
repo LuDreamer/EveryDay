@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 定义构造函数（首字母大写）
+function Calculator(a,b) {
+  // 给实例添加属性
+  this.a = a;
+  this.b = b;
+  // 给实例添加方法（不推荐，建议挂载到原型上）
+  this.read = function() {
+    a=+prompt('a?',0)
+    b=+prompt('b?',0)
+  };
+  this.sum=function(){
+    return a+b
+  }
+  this.mul=function(){
+   
+   return  a*b
+  }
+}
+let calculator = new Calculator();
+calculator.read();
+
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
+
+
+
+    </script>
+</body>
+</html>

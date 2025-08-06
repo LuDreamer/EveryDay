@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0.1+0.2</title>
+    <style>
+       .result { /* 更语义化的类名 */
+            color: red;
+            font-weight: bold; /* 可配合CSS增强样式 */
+        }
+    </style>
+</head>
+<body>
+    <h2>0.1 + 0.2 !== 0.3 是一个经典的精度问题，
+        其核心原因与 浮点数的存储和计算机制 有关。</h2>
+<p>
+    计算机无法直接存储十进制小数（如 0.1 0.2），
+    而是将其转换为 二进制浮点格式 存储,是两个无限循环小数
+    存储的0.1和0.2实际是近似值
+    <strong>实际就是：十进制小数转换为二进制浮点格式时的精度丢失，以及有限存储空间导致的近似值累积偏差</strong>
+    <br>
+    0.1 + 0.2 = <span class="result">0.30000000000000004</span>  <!-- 用span替代div -->
+    <br>（而非预期的 <strong>0.3</strong>）
+
+
+</p>
+    <script>
+        
+//         console.log(0.1+0.2)
+//         console.log((0.1+0.2)===0.3);//false
+//         console.log(Math.abs(0.1 + 0.2 - 0.3) < 1e-10); // true（误差在可接受范围内）
+// // 或使用 toFixed 格式化后比较
+// console.log((0.1 + 0.2).toFixed(10) === '0.3000000000'); // true(先用 toFixed(10) 将计算结果格式化为 保留 10 位小数的字符串，再与预期结果的字符串形式比较。)
+
+// // toFixed(n) 的参数 n 表示保留的小数位数（0-20），需根据精度需求设置（如金额计算常用 toFixed(2) 保留两位小数）。
+// //     该方法返回的是字符串，需与同样格式的字符串比较（而非数字）。
+
+// //非数值字符串转数字的读取方法
+// alert( parseInt('100px') ); // 100
+// alert( parseFloat('12.5em') ); // 12.5
+
+// alert( parseInt('12.3') ); // 12, only the integer part is returned
+// alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
+
+// //其它内置数学函数
+// alert( Math.random() ); 
+// alert( Math.max(3, 5, -10, 0, 1) ); // 5
+// alert( Math.min(1, 2) ); // 1
+// alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
+
+function readNumber(){
+    let a
+    if(a){
+        
+        while(typeof(a)===Number){
+            a=+prompt('请输入一个数字','')
+            return a
+        }
+    }else{
+        return null
+    }
+  
+}
+console.log(readNumber());
+
+    </script>
+</body>
+</html>

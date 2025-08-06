@@ -61,6 +61,27 @@ console.log(p1.name); // "张三"（this 指向 p1）
 
 console.log(p2.name); // "李四"（this 指向 p2）
 
+///创建计算器
+let calculator = {
+    
+  read:function(){
+   
+    this.a=+prompt(`请输入第一个数`,'')
+    this.b= +prompt(`请输入第二个数`,'')
+   //a,b是this指向对象的属性，不是变量值
+  },
+  sum:function(){
+
+   return this.a+this.b
+  },
+  mul:function(){
+   
+   return  this.a*this.b
+  }
+};
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
     </script>
 </body>
 </html>
