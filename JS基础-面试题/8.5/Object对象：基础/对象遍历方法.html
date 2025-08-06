@@ -16,6 +16,7 @@ let sum=0
 
 // 1. for...in 循环（遍历对象的可枚举属性）
 for (let key in salaries){
+    
     sum+=salaries[key]
 }
 alert('总工资为'+sum)
@@ -27,6 +28,9 @@ Object.keys(salaries).forEach(key=>{
         salaries[key]+=add
 })
 console.log(salaries);
+
+// 3. Object.entries()（同时获取键和值）
+
 </script>
 </body>
 </html>

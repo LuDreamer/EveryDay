@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this的规则</title>
+</head>
+<body>
+   <script>
+    //默认绑定
+    // 非严格模式
+function fn() {
+  console.log(this); // window（浏览器环境）
+}
+fn(); 
+
+// 严格模式
+
+function strictFn() {
+  console.log(this); // undefined
+}
+strictFn();
+
+
+//隐式绑定
+const obj = {
+  name: "外层",
+  child: {
+    name: "内层",
+    sayName() {
+      console.log(this.name); // this 指向 child（直接调用者）
+    }
+  }
+};
+
+obj.child.sayName(); // "内层"
+
+//显示绑定
+function sayHi() {
+  console.log(`你好，我是 ${this.name}`);
+}
+
+const obj1 = { name: "张三" };
+const obj2 = { name: "李四" };
+
+sayHi.call(obj1)
+sayHi.apply(obj2)
+const hitoZhang=sayHi.bind(obj1)
+hitoZhang()
+hitoZhang.apply(obj2)
+
+//new绑定
+function Person(name) {
+  this.name = name; // this 指向 new 创建的实例
+}
+
+const p1 = new Person("张三"); 
+const p2 = new Person("李四");
+
+console.log(p1.name); // "张三"（this 指向 p1）
+
+console.log(p2.name); // "李四"（this 指向 p2）
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS底层执行机制</title>
+</head>
+<body>
+    <script>
+        // 全局代码
+function fn1() {
+  console.log("fn1 执行");
+  fn2(); // 调用 fn2，创建 fn2 执行上下文入栈
+}
+
+function fn2() {
+  console.log("fn2 执行");
+}
+
+fn1(); // 调用 fn1，创建 fn1 执行上下文入栈
+
+/* 执行上下文栈变化：
+1. 初始：[全局执行上下文]
+2. 调用 fn1：[全局执行上下文, fn1 执行上下文]（fn1 为栈顶）
+3. fn1 中调用 fn2：[全局执行上下文, fn1 执行上下文, fn2 执行上下文]（fn2 为栈顶）
+4. fn2 执行完：[全局执行上下文, fn1 执行上下文]（fn2 出栈）
+5. fn1 执行完：[全局执行上下文]（fn1 出栈）
+6. 程序结束：栈空
+*/
+
+const globalVar = "全局";
+
+function outer() {
+  const outerVar = "外层";
+
+  function inner() {
+    const innerVar = "内层";
+    // 访问变量时，沿作用域链查找：
+    console.log(innerVar); // 自身作用域找到
+    console.log(outerVar); // 外层作用域找到
+    console.log(globalVar); // 全局作用域找到
+  }
+
+  inner();
+}
+
+outer();
+
+/* inner 函数的作用域链：
+inner 自身作用域 → outer 函数作用域 → 全局作用域
+*/
+
+    </script>
+</body>
+</html>
