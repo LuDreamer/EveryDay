@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// let arr = ["I", "study", "JavaScript"];  
+// arr.splice(1,0,'love')//删除、插入、替换
+// alert(arr)
+// //`arr.slice()` 会创建 `arr` 的一个副本。这通常用于获取一个副本，以便对其进行进一步的转换，而不影响原始数组。
+// alert(arr.slice(0,2))
+
+// //袁术组后添加
+// let arr1 = [1, 2];
+
+// let arr1ayLike = {
+//   0: "something",
+//   length: 1
+// };
+
+// alert( arr1.concat(arr1ayLike) );
+// //The `arr.forEach` 方法允许为数组中的每个元素运行一个函数。
+
+// ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+//   alert(`${item} is at index ${index} in ${array}`);
+// });
+
+// //查找 filter 返回所有匹配元素的数组：indexOf，find
+
+
+//转换 重新排列数组
+//map sort排序 reverse split拆分为数组，join则相反  reduce
+let arr = [ 1, 2, 15 ];
+arr.sort( (a, b) => a - b )//返回负数就是小于
+alert(arr)
+let arr1 = [1, 2, 3, 4, 5];
+
+// removed initial value from reduce (no 0)
+let result = arr1.reduce((sum, current) => sum + current);
+
+alert( result ); // 15
+</script>
+
+
+</body>
+</html>

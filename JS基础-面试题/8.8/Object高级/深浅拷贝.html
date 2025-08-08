@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的引用和拷贝</title>
+</head>
+<body>
+    <p>对象是“通过引用”存储和复制的</p>
+    <script>
+        const obj = {
+  name: "张三", // 基本类型（表层）
+  info: { age: 20 } // 引用类型（深层嵌套）
+};
+const shallow={...obj}
+const shallow2=Object.assign({},obj)
+console.log(shallow,shallow2);
+
+const obj2 = {
+  name: "王老五",
+  info: { age: 20 },
+  hobbies: ["读书", "运动"]
+};
+
+// 深拷贝：使用 JSON 方法（简单场景）
+const deepCopy = JSON.parse(JSON.stringify(obj2));
+
+// 修改表层属性：不影响原对象
+deepCopy.name = "李四";
+console.log(obj2.name); // 输出 "王老五"
+
+// 修改深层属性：不影响原对象
+deepCopy.info.age = 21;
+console.log(obj2.info.age); // 输出 20（原对象未变）
+
+// 修改数组（深层引用类型）：不影响原对象
+deepCopy.hobbies.push("编程");
+console.log(obj2.hobbies); // 输出 ["读书", "运动"]（原对象未变）
+console.log(deepCopy);
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
+
+// two lines using a normal newline and backticks
+// let str2 = `Hello
+// World`;
+
+// alert(str1 == str2); // true
+// alert(str1.length)
+// alert(str1[str1.length-2])
+// alert(str1.at(-1))
+
+// for (let char of "Hello") {
+//   alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+// }
+// alert(str1.indexOf('llo'))
+
+let str=prompt(`请设置一组字符串`,'')
+if(str!=null){
+let target=prompt(`想要找的字符`,'')
+let pos=-1
+
+    while(((pos=str.indexOf(target,pos+1))!=-1)){
+    alert(`位置在第字符串的${pos+1}位`)
+    
+}
+}
+console.log(str1.includes('e'));
+
+console.log('获取字符串'+str1.slice(2,6)+ str1.substring(6, 2)+str1.substr(2, 6));
+    </script>
+</body>
+</html>

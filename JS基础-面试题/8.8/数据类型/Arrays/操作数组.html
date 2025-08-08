@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         let arr=['Wj','WS','ZZ','LL',123]
+//         alert('数组是双端队列')
+
+//         //队列结构：shift push
+//         //栈结构： pop    push
+//         console.log(arr.pop(),arr);
+//         console.log(arr.push('SZ'),arr);
+//         let styles = ["Jazz", "Blues"];
+// styles.push("Rock-n-Roll");
+// styles[Math.floor((styles.length - 1) / 2)] = "Classics";
+// alert( styles.shift() );
+// styles.unshift("Rap", "Reggae");
+
+// let arr1 = ["a", "b"];
+
+// arr1.push(function() {
+//   alert( this );
+// })
+
+// arr1[2](); // a,b,function(){...}
+
+//清除数组最贱的方法就是arr.length=0
+let styles=['Jazz','Blues']
+styles.push('Rock-n-Roll')
+console.log(styles);
+styles[(styles.length-1)/2]="Classics"
+console.log(styles);
+alert(styles.shift())
+styles.unshift('Rap','Reggae')
+console.log(styles);
+
+let arr = ["a", "b"];
+
+arr.push(function() {
+  alert( this );
+});
+
+arr[2](); // ?
+    </script>
+    
+</body>
+</html>
