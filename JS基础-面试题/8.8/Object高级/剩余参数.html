@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getSum(...Arr){
+            let sum=0
+            for(let arr of Arr){
+                sum+=arr
+            }
+            return sum
+        }
+
+        alert( getSum(1) ); // 1
+alert( getSum(1, 2) ); // 3
+alert( getSum(1, 2, 3) ); // 6
+
+//arguments变量  箭头函数没有
+function showName() {
+  alert( arguments.length );
+  alert( arguments[0] );
+  alert( arguments[1] );
+
+  // it's iterable
+  // for(let arg of arguments) alert(arg);
+}
+
+// shows: 2, Julius, Caesar
+showName("Julius", "Caesar");
+
+// shows: 1, Ilya, undefined (no second argument)
+showName("Ilya");
+
+//拓展语法
+let arr1 = [1, -2, 3, 4];
+let arr2 = [8, 3, -8, 1];
+
+// alert( Math.max(1, ...arr1, 2, ...arr2, 25) );
+let merged = [0, ...arr1, 2, ...arr2];
+
+alert(merged);
+
+console.log('下面我们展示一下遍历类数组，也就是先变成数组在进行遍历');
+ function foo(){
+    //Array.from转化
+    // let newArr=Array.from(arguments)
+    // newArr.forEach(a=>console.log(a))
+    //展开运算符
+    let newArr=[...arguments]
+    newArr.forEach(a=>console.log(a))
+ }
+ foo("Julius", "Caesar");
+    </script>
+</body>
+</html>
