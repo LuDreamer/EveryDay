@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name){
+            this.name=name
+        }//构造函数
+        Person.prototype.sayHi=function(){
+            alert( `你好，${this.name}`)
+        }//原型对象方法
+        //创建实例实现共享属性和方法
+        const p1=new Person('王晶')
+        const p2=new Person('王森')
+        console.log(p1.__proto__ === Person.prototype); //        
+         console.log(Person.prototype.constructor===Person);
+        p1.sayHi()
+
+
+    </script>
+</body>
+</html>

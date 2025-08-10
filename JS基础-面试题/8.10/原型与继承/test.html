@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function toArray(){
+            // return Array.from(arguments)
+            return Array.prototype.slice.call(arguments)
+            //因为arguments没有这个slice方法，所以要用call，改变一下this指向使能用这个原型方法
+            //核心逻辑是利用 call 改变 slice 方法的 this 指向，让数组的 slice 方法能够处理类数组对象 
+            // arguments，最终实现类数组到真数组的转换
+        }  
+        console.log(toArray(1,2,3));
+        </script>
+</body>
+</html>
