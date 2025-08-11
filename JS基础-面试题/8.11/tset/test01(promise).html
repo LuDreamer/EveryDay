@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 已知异步函数示例  
+function asyncOperation(success) {  
+  return new Promise((resolve, reject) => {  
+    setTimeout(() => {  
+      if (success) resolve("操作成功");  
+      else reject(new Error("操作失败"));  
+    }, 1000);  
+  });  
+}  
+
+// 实现 flatPromise 函数：
+        // 接收一个返回 Promise 的函数 asyncFn 作为参数
+        // 返回一个新的 Promise，最终结果为 [err, result] 数组
+        // 其中 err 为错误信息（失败时），result 为成功结果（成功时）function flatPromise(asyncFn) {  
+  // 你的代码在这里  ，实现处理结果的函数，主要是能够返回结果数组
+  function flatPromise (asyncFn){
+  return new Promise(async (resolve)=>{
+    // 使用 new Promise 包装，内部通过 async/await 处理异步逻辑
+            // 这里在 Promise 的 executor 函数前加 async，是为了在内部使用 await
+    try{
+        const result=await asyncFn()
+        resolve([null,result])
+         // 成功时：错误为 null，结果为实际数据，通过 resolve 返回数组 [null, result]
+
+    }catch(err){
+        resolve([err,null])
+    }
+  })
+}
+
+
+// 测试  
+flatPromise(() => asyncOperation(true)).then(([err, res]) => {  
+  console.log(err, res); // 预期：null "操作成功"  
+});  
+flatPromise(() => asyncOperation(false)).then(([err, res]) => {  
+  console.log(err.message, res); // 预期："操作失败" null  
+});  
+    </script>
+</body>
+</html>
