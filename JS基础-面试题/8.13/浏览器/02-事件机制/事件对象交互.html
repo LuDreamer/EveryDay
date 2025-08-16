@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="https://baidu.com" id="link">百度（点我不跳转）</a>
+<ul id="list">
+  <li>项目1</li>
+  <li>项目2</li>
+  <li>项目3</li>
+</ul>
+    <script>
+        const link=document.getElementById('link')
+        link.addEventListener('click',(e)=>{
+            e.preventDefault()//组织链接默认跳转
+            console.log('不会跳转');
+        })
+
+        const list=document.getElementById('list')
+        list.addEventListener('click',(e)=>{
+            if(e.target.tagName==='LI'){
+                console.log('点击列表：',e.target.textContent);
+                e.target.style.color='red'
+            }
+        })
+    </script>
+</body>
+</html>

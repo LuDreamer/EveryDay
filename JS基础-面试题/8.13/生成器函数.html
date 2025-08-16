@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function *foo(x){//定义一个生成器
+            let y=2*(yield(x+1))
+            let z=yield(y/3)
+            return (x+y+z)
+        }
+        let result=foo(4)//返回了一个迭代器
+        //第一次执行next  yiel传参被忽略，读取函数传参 返回yield之后的值
+        console.log(result.next());// => {value: 5, done: false}
+        //第二次执行next  传入的参数=上一个yield的返回值，不传参数，yiel会返回undefined，因为上一次的结果已经被抛出去了
+        console.log(result.next(9));// => {value: 6, done: false}
+        //第三次执行next  操作同2     x=4 y=18 z=10   
+        console.log(result.next(10));//=> {value: 32, done: true}
+    
+    //  yield实际就是暂缓执行的标示，每执行一次next()，相当于指针移动到下一个yield位置
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="elem">Element</div>
+    <script>
+        let elem=document.getElementById('elem')
+    elem.style.color='red'
+    </script>
+    <ul>
+        <li>The</li>
+        <li>test</li>
+      </ul>
+      <ul>
+        <li>has</li>
+        <li>passed</li>
+      </ul>
+      <script>
+        let elements = document.querySelectorAll('ul > li:last-child');
+      
+        for (let elem of elements) {
+          alert(elem.innerHTML); // "test", "passed"
+        }
+      </script>
+<br>
+<div id="container">
+  <p class="text">段落1</p>
+  <p class="text important">段落2</p>
+  <div class="box">
+    <span>内部文本</span>
+  </div>
+  <script>
+    const container=document.getElementById('container')
+    container.style.padding='20px'
+    container.style.border='solid'
+
+    const allp=document.getElementsByTagName('p')
+    console.log("p标签数量：", allp.length); // 2
+
+    const textNodes=container.getElementsByClassName('text')
+    textNodes[0].style.color = "red"; // 第一个.text设红色
+
+      const importantP=container.querySelector('p.important')
+      importantP.style.fontSize='18px'
+
+      const mixedNodes = container.querySelectorAll("p, span");
+  mixedNodes.forEach(node => { // 遍历静态集合
+    node.style.margin = "5px 0";
+  });
+  </script>
+</div>
+
+</body>
+</html>

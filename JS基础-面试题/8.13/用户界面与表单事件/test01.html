@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>夜间模式切换</title>
+  <style>
+    .night-mode {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <button id="toggleBtn">开启夜间模式</button>
+  <p id="content">这是一段示例文本，点击按钮切换夜间模式</p>
+  
+  <script>
+    // 请在这里补充 JS 代码，实现需求
+    const Btn=document.getElementById('toggleBtn')
+    const content=document.getElementById('content')
+   
+    Btn.addEventListener('click',()=>{
+        content.classList.toggle('night-mode')
+    })
+  </script>
+</body>
+</html>

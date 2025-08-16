@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <input type="text" id="taskInput" placeholder="输入任务，按Enter添加">
+        <button id="addBtn">添加</button>
+        <ul id="taskList">
+           
+          </ul>
+       
+
+    </div>
+   
+    <style>
+         li { padding: 5px; margin: 3px 0; cursor: pointer; }
+  .del { font-size: small;  margin-left: 10px;background-color:yellow;}
+    </style>
+
+
+
+    <script>//获取元素
+        const taskList = document.getElementById("taskList");
+  const addBtn = document.getElementById("addBtn");
+  const input = document.getElementById("taskInput");
+
+  function addTask(text) {
+    if (!text) return;
+    const li = document.createElement("li");
+    li.innerHTML = `${text} <span class="del">删除</span>`;
+    taskList.appendChild(li);
+    input.value = "";
+  }
+
+  //事件监听：1.事件委托：父元素ul监听点击事件(多个元素最好就是使用事件委托)
+  taskList.addEventListener('click',(e)=>{
+    //2.判断触发事件的是删除按钮
+    if(e.target.classList.contains('del')){
+        //3.找到按钮所在的li并删除
+        const li = e.target.closest("li"); //// 找最近的父 li
+        li.remove()
+    }
+  })
+  //下面只对addBtn
+  addBtn.addEventListener('click',()=>{
+    //要想创建新的就这样
+       addTask(input.value.trim())
+    //    trim() 是字符串的方法，用于去除字符串首尾的空白字符（空格、换行符、制表符等），不影响中间的空格。
+    }
+  )
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") { // 判断按下的是Enter键
+      addTask(input.value.trim());
+    }
+  });
+
+    </script>
+</body>
+</html>

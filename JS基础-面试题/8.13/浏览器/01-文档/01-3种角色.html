@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //window全局对象
+        // 1. 访问浏览器信息
+console.log(window.innerWidth); // 看窗口宽度（做响应式判断）
+console.log(window.location.href); // 拿当前网址（跳转、传参常用）
+
+// 2. 存全局数据
+window.userInfo = { name: '张三', age: 20 }; 
+// 其他脚本/函数里，直接用 window.userInfo 访问
+
+// 3. 定时器（常用！）
+window.setTimeout(() => {
+  alert('定时器1 秒后触发');
+}, 1000);
+
+//document文档根对象
+// 1. 改页面标题（SEO、用户提示常用）
+document.title = ' 我的网站';
+
+// 2. 找 DOM 节点（核心功能！）
+const btn = document.querySelector('#header .nav-btn'); 
+// CSS 选择器语法，精准选节点
+
+// 3. 创建新节点（动态渲染列表时用）
+const newDiv = document.createElement('div');
+newDiv.textContent = '动态内容';
+document.body.appendChild(newDiv);
+
+
+    </script>
+</body>
+</html>

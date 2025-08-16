@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="input" placeholder="输入内容">
+        <button id="addBtn">添加</button>
+        <ul id="list"></ul>
+    </div>
+    <style>
+        .active{background-color: aqua;}
+        li{padding: 5px;margin: 3px 0;}
+    </style>
+    <script>
+        //首先就是获取元素
+        const input=document.getElementById('input')
+        const addBtn=document.getElementById('addBtn')
+        const list=document.getElementById('list')
+
+        //addBtn点击创建新li
+        addBtn.addEventListener('click',()=>{
+            //获取输入值
+            const text=input.value.trim()
+            if(!text) return
+
+            //创建新li节点
+            const li=document.createElement('li')
+            li.textContent=text
+
+            li.addEventListener('click',()=>{
+                li.classList.toggle('active')
+            })
+
+            li.addEventListener("dblclick", () => {
+      list.removeChild(li); // 从父节点ul中删除自己
+    });
+
+            list.appendChild(li)
+            input.value=''
+        }
+    )
+    </script>
+</body>
+</html>
