@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="handleClick()">按钮</button>
+    <script>
+        let sum=0
+        function throttle(time,fn){
+            let pre=0
+            let now=0
+            return function(...args){
+                now=new Date()
+                if(now-pre>time){
+                    fn.apply(this,args)
+                    pre=new Date()
+                }
+            }
+        }
+         function run() {
+                console.log('2秒内，函数执行一次,总执行次数为' + `${++sum}`)
+                
+            }
+            let handleClick = throttle(2000,run)
+    </script>
+</body>
+</html>
