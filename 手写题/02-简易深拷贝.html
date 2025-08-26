@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         const a = { val: 2 };
+            const newA = JSON.parse(JSON.stringify(a));
+            a.target = a;
+            // const newA = JSON.parse(JSON.stringify(a)); //无限递归报错
+            let b = {
+                    a: 1,
+                    b: function () { },
+                    c: [],
+                    d: new Date(),
+                    e: /\.js$/,
+                    f: new Set([1, 2]),
+                    g: new Map(),
+                }
+
+                let x = JSON.parse(JSON.stringify(b));
+                // console.log(x);
+
+               function deepClone(obj){
+                if(typeof obj!=='object'||obj===null){
+                    return obj
+                    //若属性为止，则直接返回
+                }
+                let copy={}
+                if(obj.construtor===Array){copy=[]}
+                //递归遍历，但是不遍历原型链
+                for(let i in obj){
+                    if(obj.hasOwnProperty(i)){
+                        copy[i]=deepClone(obj[i])
+                    }
+                }
+                return copy
+               }
+               let y=deepClone(b)
+               console.log(y);
+               
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       
+        function shallowClone(source){
+            if(source&&typeof source==='object'){
+                const target={}
+                for(let i in source){
+                    if(source.hasOwnProperty){//防止遍历原型链
+                        target[i]=source[i]
+                    }
+                }
+            return target
+            }
+            return source
+        }
+    </script>
+</body>
+</html>
