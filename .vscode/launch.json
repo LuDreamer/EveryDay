@@ -1,0 +1,14 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "调试const模拟代码", // 配置名称（自定义）
+      "type": "chrome", // 调试类型（Chrome浏览器）
+      "request": "launch", // 启动方式（主动启动Chrome）
+      // 你的HTML文件绝对路径（复制文件路径时注意用双反斜杠\\）
+      "file": "c:\\Users\\1\\Documents\\GitHub\\EveryDay\\手写题\\const定义常量实现.html",
+      // 解决本地文件跨域：添加Chrome启动参数
+      "runtimeArgs": ["--allow-file-access-from-files"]
+    }
+  ]
+}

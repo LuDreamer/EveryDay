@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //是一个闭包，apply在闭包内，否则就执行了
+        //两个可以传参，参数为字符串
+        Function.prototype.myBind=function(context,...args){
+            if(typeof this!=='function'){
+                throw new TypeError('Error')
+            }
+            //谁调用谁就是this
+            const fn=this
+            
+            //返回一个函数
+            return function(...innerArgs){
+                //用剩余参数接受所有调用时的参数
+                return fn.apply(context,args.concat(innerArgs))//将bind时的参数和调用时的参数合并传入
+            }
+        }
+        // 1. 定义原函数
+            function fn(a, b) {
+                console.log(`this: ${this.name}, 参数和: ${a + b}`);
+            }
+            const obj = { name: 'obj' };
+            // 2. 用myBind绑定this为obj，同时提前传第一个参数10
+            const boundFn = fn.myBind(obj, 10);
+
+            // 3. 调用新函数boundFn，传第二个参数20
+            boundFn(20);
+            // 输出：this: 绑定的this, 参数和: 30
+            //多次传参也是没有问题的
+            boundFn(30,40);
+            boundFn()
+
+//             myBind 的传参核心规则
+// 你的 myBind 实现完全符合原生 bind 逻辑，传参分两步，且每次调用新函数时，追加的参数只对本次调用有效：
+
+//                 第一步：调用 myBind 时预传参数（fn.myBind(obj, 10)）：
+// 这里的 10 是 “全局预传参数”，会固定保存在闭包中，每次调用新函数 boundFn 时都会优先使用。
+//                 第二步：调用 boundFn 时追加参数（boundFn(20) / boundFn(30, 40) / boundFn()）：
+                // 这里的参数（如 20、30, 40）是 “单次追加参数”，只对当前这次调用有效，调用结束后不会保留，下次调用需要重新传。
+    </script>
+</body>
+</html>

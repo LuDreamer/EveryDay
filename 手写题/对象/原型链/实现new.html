@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //构造函数new实例与继承很相似
+        //1.继承原型方法2.继承实例属性3.根据返回值是否为对象类型判断
+        function myNew(fn,...args){
+            const instance=Object.create(fn.prototype)//将其原型指向fn.prototype
+            const res=fn.apply(instance,args)
+            return (typeof res === 'object' && res !== null) ? res : instance
+        }
+        function Person(name) {
+                this.age = 12;
+                this.name = name;
+            }
+
+            Person.prototype.eat = function () {
+                return `${this.name} is eating`;
+            }
+
+            const p = myNew(Person, 'ws');
+            console.log(p.eat());
+            console.log(p.age);
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 原理 实例是否属于原型方法
+        // 1. 通过__proto__链查找
+        function myInstanceOf(left, right) {
+             // 基本类型或null直接返回false（与原生instanceof保持一致）
+            if (left === null || typeof left !== 'object') {
+                return false;
+            }
+
+            //获取左边实例原型链
+            let leftProto= Object.getPrototypeOf(left)
+            //获取右边构造函数的原型
+            const targetProto=right.prototype
+
+
+            // 回调遍历原型链
+            while(true){
+                if(leftProto===null){
+                    return false
+                }
+                if(leftProto===targetProto){
+                    return true
+                }
+                leftProto=Object.getPrototypeOf(leftProto)
+                //继续向上查找原型链
+            }
+            return false
+        }
+    // 测试用例
+        const a = ['10'];
+        console.log(myInstanceOf(a, Array));    // 应输出 true（a是Array的实例）
+        console.log(myInstanceOf(a, Object));   // 应输出 true（数组也是Object的实例）
+        console.log(myInstanceOf(a, String));   // 应输出 false（a不是String的实例）
+        console.log(myInstanceOf(null, Object));// 应输出 false（null特殊处理）
+        console.log(myInstanceOf(123, Number)); // 应输出 false（基本类型不是实例）
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟const实现</title>
+</head>
+
+<body>
+    <script type="module">
+        // 确保路径正确，且目标文件导出了getType
+        import { getType } from './获取数据类型.js';
+
+        // 模拟const的实现
+        export var _const = function (data, value) {
+            // 将变量挂载到window全局对象
+            window.data = value;
+
+            // 用Object.defineProperty定义属性，限制修改
+            Object.defineProperty(window, data, {
+                enumerable: false, // 修复拼写错误：enumerble → enumerable
+                configurable: false, // 禁止删除和重新配置
+                get: function () {
+                    return value; // 访问时返回初始值
+                },
+                set: function () {
+                    // 保持与原生const一致，抛出TypeError
+                    throw new TypeError("Assignment to constant variable.");
+                }
+            });
+        };
+
+        // 测试代码
+        _const('name', 'ws');
+        console.log(name); // 输出：ws
+            // 打印_const的类型（需确保getType正确实现）
+            console.log(getType(_const)); // 预期输出：Function
+        // 注意：下一行会触发错误，如需测试可取消注释
+        name = 'dq'; // 执行到这里会抛出TypeError
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="handleClick()">防抖按钮</button>
+    <script>
+        let sum=0
+        function debounce(fn, delay){
+                let timer=null
+                return function ( ...args) {
+                    if(timer){clearTimeout(timer)}
+                    timer = window.setTimeout(function () {
+                        fn.apply(this,args);
+                    }, delay)
+                }
+            }
+            function run(){
+                alert('点击结束后1秒后执行一次,总执行次数为'+`${++sum}`)
+            }
+            let handleClick =debounce(run,1000)
+    </script>
+</body>
+</html>
