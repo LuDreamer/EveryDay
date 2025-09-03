@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* 
+         * 1. 移动变色动画模块：实现红色方块的移动+颜色切换（无限循环且反向交替）
+         * 核心：通过relative定位让left/top生效，绑定example关键帧实现多阶段动画
+         */
+        div.animated-box {
+            width: 100px;
+            /* 方块宽度：100px */
+            height: 100px;
+            /* 方块高度：100px */
+            background-color: red;
+            /* 初始背景色：红色 */
+            position: relative;
+            /* 相对定位：为left/top（绝对定位属性）提供参考，否则移动无效 */
+            animation-name: example;
+            /* 绑定动画关键帧：对应下方的@keyframes example */
+            animation-duration: 4s;
+            /* 动画单次持续时间：4秒完成一轮 */
+            animation-delay: 0.5s;
+            /* 动画延迟启动时间：页面加载后0.5秒开始 */
+            animation-iteration-count: infinite;
+            /* 动画循环次数：无限循环（不停止） */
+            animation-direction: alternate-reverse;
+            /* 动画播放方向：反向交替（一轮结束后反向播放，再正向，以此类推） */
+        }
+
+        /* 
+         * 移动变色动画的关键帧：定义动画各阶段的样式（按百分比划分进度）
+         * 0%：动画开始（初始状态）；25%：1/4进度；50%：1/2进度；75%：3/4进度；100%：动画结束（回到起点）
+         */
+        @keyframes example {
+            0% {
+                background-color: red;
+                /* 初始背景色：红色 */
+                left: 0px;
+                /* 初始水平位置：距离左侧0px */
+                top: 0px;
+                /* 初始垂直位置：距离顶部0px */
+            }
+
+            25% {
+                background-color: yellow;
+                /* 25%进度时背景色：黄色 */
+                left: 200px;
+                /* 25%进度时水平位置：距离左侧200px（向右移动） */
+                top: 0px;
+                /* 25%进度时垂直位置：保持顶部0px（不上下移动） */
+            }
+
+            50% {
+                background-color: blue;
+                /* 50%进度时背景色：蓝色 */
+                left: 200px;
+                /* 50%进度时水平位置：保持左侧200px */
+                top: 200px;
+                /* 50%进度时垂直位置：距离顶部200px（向下移动） */
+            }
+
+            75% {
+                background-color: green;
+                /* 75%进度时背景色：绿色 */
+                left: 0px;
+                /* 75%进度时水平位置：回到左侧0px（向左移动） */
+                top: 200px;
+                /* 75%进度时垂直位置：保持顶部200px */
+            }
+
+            100% {
+                background-color: red;
+                /* 100%进度时背景色：回到红色（与初始一致） */
+                left: 0px;
+                /* 100%进度时水平位置：回到左侧0px */
+                top: 0px;
+                /* 100%进度时垂直位置：回到顶部0px（完成一轮循环） */
+            }
+        }
+
+        /* 
+         * 2. 缓动函数对比动画模块：5个红色块分别用不同速度曲线横向移动（垂直分行显示）
+         * 核心：通过display:block让内部元素垂直排列，每个块绑定mymove关键帧，用不同timing-function实现速度差异
+         */
+        .speed-box {
+            margin: 300px;
+            /* 容器整体边距：上下左右各300px（控制整体位置） */
+            display: block;
+            /* 容器布局：块级元素（内部子元素默认垂直排列，实现分行效果） */
+            margin-top: 50px;
+            /* 容器顶部边距：50px（与上方移动变色动画拉开距离，避免重叠） */
+        }
+
+        /* 
+         * 缓动函数对比块的共同样式：统一基础外观和动画配置
+         * #div1~#div5 共用，仅timing-function（速度曲线）不同
+         */
+        #div1,
+        #div2,
+        #div3,
+        #div4,
+        #div5 {
+            width: 200px;
+            /* 每个块宽度：200px */
+            height: 50px;
+            /* 每个块高度：50px */
+            background-color: red;
+            /* 初始背景色：红色 */
+            font-weight: bold;
+            /* 文字粗细：加粗 */
+            color: white;
+            /* 文字颜色：白色 */
+            text-align: center;
+            /* 文字水平居中 */
+            line-height: 50px;
+            /* 文字行高：等于块高度（实现文字垂直居中） */
+            position: relative;
+            /* 相对定位：为left属性（横向移动）提供参考 */
+            animation: mymove 7s;
+            /* 绑定动画关键帧+单次时长：mymove关键帧，7秒完成一轮 */
+            margin-bottom: 15px;
+            /* 块底部边距：15px（每个块之间的垂直间距，分行更清晰） */
+            animation-iteration-count: infinite;
+            /* 动画循环次数：无限循环 */
+            animation-direction: alternate-reverse;
+            /* 动画播放方向：反向交替（移动到终点后反向回到起点） */
+        }
+
+        /* 
+         * 缓动函数对比动画的关键帧：仅控制横向移动（left属性）
+         * from：动画开始（起点）；to：动画结束（终点）
+         */
+        @keyframes mymove {
+            from {
+                left: 0px;
+                /* 动画起点：距离左侧0px（初始位置） */
+            }
+
+            to {
+                left: 400px;
+                /* 动画终点：距离左侧400px（横向向右移动400px） */
+            }
+        }
+
+        /* 
+         * 各块的专属缓动函数：控制动画速度曲线（核心对比点）
+         * 不同timing-function决定移动时的"快慢节奏"差异
+         */
+        #div1 {
+            animation-timing-function: linear;
+            /* 匀速：整个动画速度保持一致，无快慢变化 */
+        }
+
+        #div2 {
+            animation-timing-function: ease;
+            /* 默认：慢→快→慢（开始和结束慢，中间快） */
+        }
+
+        #div3 {
+            animation-timing-function: ease-in;
+            /* 加速：开始慢，随着动画进行逐渐加快 */
+        }
+
+        #div4 {
+            animation-timing-function: ease-out;
+            /* 减速：开始快，随着动画进行逐渐减慢 */
+        }
+
+        #div5 {
+            animation-timing-function: ease-in-out;
+            /* 柔和快慢：开始慢→中间快→结束慢（比ease更平缓） */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>CSS Animation</h1> <!-- 页面标题：CSS动画演示 -->
+
+    <!-- 动画1：移动+变色方块（无限循环，反向交替播放） -->
+    <div class="animated-box"></div>
+
+    <!-- 动画2：不同缓动函数对比（5个红色块横向移动，垂直分行显示，无限循环） -->
+    <div class="speed-box">
+        <div id="div1">linear 线性（匀速）</div> <!-- 缓动函数1：linear（匀速） -->
+        <div id="div2">ease 逐渐加速（慢快慢）</div> <!-- 缓动函数2：ease（默认慢快慢） -->
+        <div id="div3">ease-in 开始慢，逐渐加快</div> <!-- 缓动函数3：ease-in（加速） -->
+        <div id="div4">ease-out 开始快，逐渐减慢</div> <!-- 缓动函数4：ease-out（减速） -->
+        <div id="div5">ease-in-out 慢→快→慢（更柔和）</div> <!-- 缓动函数5：ease-in-out（柔和快慢） -->
+    </div>
+
+    <!-- 动画属性说明文字 -->
+    <p><b>Note:</b> animation-fill-mode: forwards 让动画结束后保持终点样式（当前代码未启用）</p>
+    <p>animation-direction: alternate-reverse 让动画在每次循环时反向播放（先反向，再正向，循环）</p>
+    <p>animation-duration: 4s; 动画单次持续时间（移动变色动画用4秒，缓动对比用7秒）<br>
+        animation-delay: 0.5s; 动画延迟运行时间（移动变色动画延迟0.5秒启动）</p>
+</body>
+
+</html>
