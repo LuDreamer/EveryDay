@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //用于遍历数组，对每个元素执行回调处理后，将结果组成新数组返回
+        Array.prototype.myMap=function(callback,context){
+    //原数组的上下文对象：如果回调函数里需要用到某个对象的属性或方法，就可以把这个对象作为第二个参数传进去，让回调里的 this 精准指向它，避免 this 指向混乱（比如默认指向全局对象）
+    context=context||window;
+    const newArr=[];//新数组
+    for(let i=0;i<this.length;i++){
+      //调用回调，传参并绑定this
+      const result=callback.call(context,this[i],i,this)
+      newArr.push(result);//把回调的结果放到新数组里
+    }
+    return newArr;//返回新数组
+}
+//测试
+const arr=[1,2,3,4,5];
+const newArr=arr.myMap((item,index,arr)=>{
+  return item*2;
+});
+alert('新数组为'+newArr);//[2,4,6,8,10]
+    </script>
+</body>
+</html>
