@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Object.prototype.flatObj=function(separator='.'){
+            const result={}
+            //遍历元对象的键值对 for..of
+            for(const[key,value]of Object.entries(this)){
+                if(typeof this[key]==='object'&&this[key]!==null){
+                    //递归扁平化子对象
+                    const flatChild=this[key].flatObj(separator);
+                    //拼接键名合并
+                    for(const[childKey,childValue]of Object.entries(flatChild)){
+                        result[`${key}${separator}${childKey}`]=childValue;
+                    }}
+                    else{
+                        result[key]=value;
+                    }
+                }
+                return result
+            }
+        // 测试用例
+            const nestedObj = {
+                a: 1,
+                b: {
+                    c: 2,
+                    d: {
+                        e: 3,
+                        f: { g: 4 }
+                    }
+                },
+                h: { i: 5 }
+            };
+
+            console.log(nestedObj.flatObj());
+            // 输出：{ a:1, 'b.c':2, 'b.d.e':3, 'b.d.f.g':4, 'h.i':5 }
+
+            // 自定义分隔符测试
+            console.log(nestedObj.flatObj('_'));
+            // 输出：{ a:1, 'b_c':2, 'b_d_e':3, 'b_d_f_g':4, 'h_i':5 }
+    </script>
+</body>
+</html>
