@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+
+            /* 4列等宽的表格 */
+              /* grid-template-columns: 1fr 2fr 1fr 1fr; */
+            /* 4列，第二列宽度为第一列的两倍 */
+            background-color: dodgerblue;
+            padding: 10px;
+            gap: 50px 50px;
+        }
+
+        .grid-container>div {
+            margin: 5px;
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            font-size: 30px;
+        }
+
+        .item1 {
+            grid-column: 1 / span 2;
+            /* 项目1位置第一行，占两列 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>The grid-column Property</h1>
+
+    <p>The <em>grid-column</em> property is a shorthand property for the <em>grid-column-start</em> and the
+        <em>grid-column-end</em> properties.
+    </p>
+
+    <p>Place the first grid item at column-line 1, and let it span 2 columns:</p>
+
+    <div class="grid-container">
+        <div class="item1">1</div>
+        <div class="item2">2</div>
+        <div class="item3">3</div>
+        <div class="item4">4</div>
+        <div class="item5">5</div>
+        <div class="item6">6</div>
+        <div class="item7">7</div>
+        <div class="item8">8</div>
+    </div>
+
+</body>
+
+</html>
