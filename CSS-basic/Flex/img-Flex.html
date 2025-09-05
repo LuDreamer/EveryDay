@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 移动端响应式核心：必须保留 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image Gallery</title>
+    <style>
+        /* 基础重置：简化默认样式差异 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0 4px;
+            margin: 0 auto;
+            max-width: 1400px;
+            /* 限制最大宽度，避免大屏下图片过大 */
+        }
+
+        .header {
+            text-align: center;
+            padding: 32px 0;
+            margin-bottom: 16px;
+        }
+
+        /* Flex 父容器：现代浏览器标准语法 */
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            /* 强制换行，核心响应式属性 */
+            gap: 8px;
+            /* 图片间距，替代复杂 padding 计算 */
+        }
+
+        /* 列布局：默认4列（现代浏览器支持 calc 计算） */
+        .column {
+            flex: 1 0 calc(25% - 8px);
+            /* 1:可放大，0:不可缩小，减去间距 */
+            max-width: calc(25% - 8px);
+            /* 限制最大宽度，避免溢出 */
+        }
+
+        /* 图片样式：保持比例+铺满容器 */
+        .column img {
+            width: 100%;
+            height: auto;
+            /* 关键：防止图片拉伸变形 */
+            display: block;
+            /* 消除图片下方默认空隙 */
+            border-radius: 4px;
+            /* 可选：优化视觉，可删除 */
+            transition: transform 0.3s ease;
+            /* 可选：hover 放大效果 */
+        }
+
+        /* 可选：图片 hover 交互（增强体验） */
+        .column img:hover {
+            transform: scale(1.02);
+            /* 轻微放大，不影响布局 */
+        }
+
+        /* 响应式1：中等屏幕（≤800px）→ 2列 */
+        @media (max-width: 800px) {
+            .column {
+                flex: 1 0 calc(50% - 8px);
+                max-width: calc(50% - 8px);
+            }
+        }
+
+        /* 响应式2：小屏幕（≤600px）→ 1列 */
+        @media (max-width: 600px) {
+            .column {
+                flex: 1 0 100%;
+                /* 占满父容器宽度 */
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 头部标题 -->
+    <div class="header">
+        <h1>Responsive Image Gallery</h1>
+        <p>Resize the browser window to see the responsive effect.</p>
+    </div>
+
+    <!-- 图片网格 -->
+    <div class="row">
+        <div class="column">
+            <img src="https://picsum.photos/id/292/800/600" alt="Wedding scene">
+            <img src="https://picsum.photos/id/28/800/600" alt="Rock formation">
+            <img src="https://picsum.photos/id/137/800/600" alt="Waterfall">
+        </div>
+
+        <div class="column">
+            <img src="https://picsum.photos/id/64/800/600" alt="Underwater coral">
+            <img src="https://picsum.photos/id/131/800/600" alt="Ocean waves">
+            <img src="https://picsum.photos/id/29/800/600" alt="Mountain sky">
+        </div>
+
+        <div class="column">
+            <img src="https://picsum.photos/id/15/800/600" alt="Forest nature">
+            <img src="https://picsum.photos/id/110/800/600" alt="Mist in valley">
+            <img src="https://picsum.photos/id/26/800/600" alt="Paris street">
+        </div>
+
+        <div class="column">
+            <img src="https://picsum.photos/id/96/800/600" alt="Green forest">
+            <img src="https://picsum.photos/id/164/800/600" alt="Calm lake">
+            <img src="https://picsum.photos/id/188/800/600" alt="Snow mountain">
+        </div>
+    </div>
+</body>
+
+</html>
