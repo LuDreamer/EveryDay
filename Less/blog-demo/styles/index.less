@@ -1,0 +1,113 @@
+// 引入变量文件（必须放在最顶部，否则变量无法使用）
+@import "./variables.less";
+
+// 全局样式：复用值变量（字体、文字色）
+body {
+    margin: 0;
+    padding: 0;
+    font-family: @baseFont; // 引用基础字体变量
+    font-size: @baseFontSize; // 引用基础字体大小
+    color: @darkText; // 引用正文文字色
+    background: @lightGray; // 引用浅灰色背景
+}
+
+// 1. 顶部 Banner：使用 URL 变量和值变量
+.banner {
+    width: 100%;
+    height: 300px;
+    // 引用 URL 变量：拼接 banner 图路径
+    background: url("@{imgPath}/banner.jpg") no-repeat center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-title {
+    color: #fff;
+    font-size: @baseFontSize * 2; // 变量运算：字体放大 2 倍
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+// 2. 页面容器：使用值变量（宽度、居中）
+.container {
+    width: @containerWidth; // 引用容器宽度变量
+    margin: 0 auto; // 水平居中
+    padding: @spacing; // 引用统一间距
+    display: flex;
+    gap: @spacing; // 引用统一间距（元素间空隙）
+}
+
+// 3. 左侧博主信息：使用声明变量（@baseCard）
+.author-card {
+    @baseCard(); // 引入卡片基础样式（背景、阴影、内边距）
+    width: 300px;
+    text-align: center;
+}
+
+.author-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    // 引用 URL 变量：拼接头像路径
+    background: url("@{imgPath}/avatar.jpg") no-repeat center;
+    background-size: cover;
+    margin: 0 auto @spacing;
+    border: 3px solid @accentColor; // 引用强调色变量
+}
+
+.author-name {
+    font-size: @baseFontSize + 2px; // 变量运算：字体稍大
+    color: @themeColor; // 引用主色调变量
+    margin: 0 0 8px;
+}
+
+.author-desc {
+    color: @lightText; // 引用辅助文字色变量
+    margin: 0 0 @spacing;
+}
+
+// 4. 右侧博客列表：使用声明变量和值变量
+.blog-list {
+    flex: 1; // 占满剩余宽度
+}
+
+.blog-item {
+    @baseCard(); // 复用卡片基础样式
+}
+
+.blog-title {
+    color: @themeColor; // 引用主色调变量
+    margin: 0 0 8px;
+    text-decoration: none;
+    display: block;
+}
+
+.blog-title:hover {
+    color: @accentColor; //  hover 时用强调色变量
+}
+
+.blog-meta {
+    color: @lightText; // 引用辅助文字色变量
+    font-size: @baseFontSize - 2px; // 变量运算：字体稍小
+    margin: 0 0 12px;
+}
+
+.blog-excerpt {
+    color: @darkText; // 引用正文文字色变量
+    line-height: 1.6;
+    margin: 0;
+}
+
+// 5. 阅读更多按钮：使用声明变量（@baseButton）和值变量
+.read-more {
+    @baseButton(); // 引入按钮基础样式
+    background: @accentColor; // 引用强调色变量（按钮背景）
+    color: #fff;
+    margin-top: @spacing;
+    display: inline-block;
+}
+
+.read-more:hover {
+    background: @themeColor; // hover 时用主色调变量
+}

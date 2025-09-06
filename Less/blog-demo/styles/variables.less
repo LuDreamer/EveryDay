@@ -1,0 +1,34 @@
+//集中定义所有Less变量
+
+//值变量
+@themeColor: #1890ff; // 全局主题色
+@grayColor: #f5f5f5; // 辅助灰色
+@baseFontSize: 14px; // 基础字体大小
+@containerWidth: 1200px; // 页面容器宽度
+@spacing: 20px; // 统一间距
+
+// 2. 【URL 变量】：图片资源路径（避免路径修改时逐个改）
+@imgPath: "../assets/images"; // 图片根路径
+
+
+// 3. 【声明变量】：复用的样式组合（卡片、按钮基础样式）
+@baseCard: {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: @spacing;
+    margin-bottom: @spacing;
+}
+
+;
+
+@baseButton: {
+    border: none;
+    border-radius: 4px;
+    font-size: @baseFontSize;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+;
