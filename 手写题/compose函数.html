@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //compose是用来将多个函数组合成一个函数，返回一个函数，使用reduce  ，组合函数从左到右执行
+        function compose(...fns){
+            //如果是一个
+            if(fns.length===1){
+                return fns[0]
+            }
+            //多个函数的话，从左到右先内再外
+            return fns.reduce((a, b) => (...args) => b(a(...args)))
+        }
+        let sayHello = (...str) => `Hello , ${str.join(" And ")}`;
+            let toUpper = (str) => str.toUpperCase();
+            let merge = compose(
+                sayHello,
+                toUpper
+            );
+
+            console.log(merge("jack", "bob"));
+            // HELLO , JACK AND BOB
+
+    </script>
+</body>
+</html>
